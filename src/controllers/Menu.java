@@ -54,7 +54,7 @@ public class Menu {
                 break ;
             case 6 : a.listeDesOperations();
                 break ;
-            case 7 : System.exit(0);
+            case 7 : a.verment();
             break ;
 
         }

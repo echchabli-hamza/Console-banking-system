@@ -228,6 +228,79 @@ public class AllFunctions {
 
 
 
+    public void verment() {
+
+
+        Compte c1;
+        Compte c2;
+
+        System.out.println("enter votre numero the compte");
+
+        String numero1 = sc.nextLine().trim();
+
+        if (liste.containsKey(numero1)) {
+
+            c1 = liste.get(numero1);
+
+            System.out.println("entrer le numero  de l'autre compte");
+
+            String numero2 = sc.nextLine().trim();
+
+            if (liste.containsKey(numero2)) {
+
+
+                c2 = liste.get(numero2);
+
+
+
+
+
+                System.out.println("entrer le montant");
+                double montant = sc.nextDouble();
+                sc.nextLine();
+
+                boolean res = c1.retirer(montant);
+
+                if (res) {
+                    System.out.println("votre solde aprés la opération est " + c1.getSold());
+
+                    Retrait operationR = new Retrait(montant, Destinations.VIREMENT_SORTANT);
+                    c1.addOperation(operationR);
+
+
+
+
+
+                     Boolean resDeVirment = c2.addAmount(montant);
+
+                    Versement v = new Versement(montant , Sources.VIREMENT_EXTERNE);
+                    c1.addOperation(v);
+
+                } else {
+
+                    System.out.println("you dont have enough solde , votre solde : " + c1.getSold());
+
+                }
+
+
+
+
+
+            } else {
+
+                System.out.println("there is no account with this numero");
+
+            }
+
+
+        }
+
+    }
+
+
+
+
+
 
 
 
@@ -309,6 +382,35 @@ public class AllFunctions {
         }
     }
 
+
+//    public void addIntrest(){
+//
+//
+//        for(Compte c :  liste.values()){
+//
+//
+//            System.out.println(c.getSold());
+//            c.calculerInteret();
+//            System.out.println(c.getSold());
+//
+//            System.out.println("///////////////////////////////");
+//
+//
+//        }
+//
+//
+//
+//
+//    }
+
+    public void addIntrest() {
+        for (Compte c : liste.values()) {
+            System.out.println("Before: " + c.getSold());
+            c.calculerInteret();
+            System.out.println("After: " + c.getSold());
+            System.out.println("///////////////////////////////");
+        }
+    }
 
 
 }
