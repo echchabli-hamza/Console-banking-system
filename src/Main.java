@@ -11,7 +11,7 @@ public class Main {
         AllFunctions al = new AllFunctions();
 
         new Thread(() -> {
-            System.out.println("EEEEE");
+
             while (true) {
                 try {
                     al.addIntrest();

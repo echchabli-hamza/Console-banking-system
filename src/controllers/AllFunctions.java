@@ -10,222 +10,201 @@ import models.operations.variables.Destinations;
 import models.operations.variables.Sources;
 
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class AllFunctions {
 
 
-    HashMap<String , Compte> liste = new HashMap<>();
+    HashMap<String, Compte> liste = new HashMap<>();
 
     private Scanner sc = new Scanner(System.in);
 
 
+    public void addCompte() {
+
+        Compte c1;
+
+        System.out.println("type de Compte : \n" + "enter 1 pour Courant \n" + "enter 2 pour Epargne");
+
+        int choix = readInt();
+
+        if (choix == 1) {
+            System.out.println("entre votre solde");
+
+            double solde = readDouble();
+            sc.nextLine();
+
+            System.out.println("entre votre decouvert");
+
+            double decouvert = readDouble();
+            sc.nextLine();
 
 
+            c1 = new CompteCourant(solde, decouvert);
 
-    public void addCompte(){
+            System.out.println(c1.getCode());
 
+            liste.put(c1.getCode(), c1);
 
-        Compte c1 ;
+        } else {
+            System.out.println("entre votre solde");
 
+            double solde = readDouble();
+            sc.nextLine();
 
-        System.out.println("type de Compte : \n"+ "enter 1 pour Courant \n" + "enter 2 pour Epargne");
+            System.out.println("entre votre tauxInteret");
 
-         int choix = sc.nextInt();
-
-         if(choix==1){
-             System.out.println("entre votre solde");
-
-             double solde = sc.nextDouble();
-             sc.nextLine();
-
-             System.out.println("entre votre decouvert");
-
-             double decouvert = sc.nextDouble();
-             sc.nextLine();
+            int tauxInteret = readInt();
+            sc.nextLine();
 
 
-
-              c1= new CompteCourant(solde , decouvert);
-
-             System.out.println(c1.getCode());
-
-             liste.put(c1.getCode(), c1);
-
-         }else{
-             System.out.println("entre votre solde");
-
-             double solde = sc.nextDouble();
-             sc.nextLine();
-
-             System.out.println("entre votre tauxInteret");
-
-             int tauxInteret = sc.nextInt();
-             sc.nextLine();
+            c1 = new CompteEpargne(solde, tauxInteret);
 
 
-
-              c1= new CompteEpargne(solde , tauxInteret);
-
-
-             liste.put(c1.getCode(), c1);
+            liste.put(c1.getCode(), c1);
 
 
-         }
+        }
 
 
-         System.out.println(c1.toString());
-
+        System.out.println(c1.toString());
 
 
     }
 
 
-    public void retrait(){
+    public void retrait() {
 
 
-        Compte c1 ;
+        Compte c1;
 
 
         System.out.println("enter votre numero the compte");
 
-        String numero= sc.nextLine().trim();
+        String numero = sc.nextLine().trim();
 
-        if (liste.containsKey(numero)){
-            c1=liste.get(numero);
+        if (liste.containsKey(numero)) {
+            c1 = liste.get(numero);
 
 
             Destinations result = checkDes();
 
 
             System.out.println("entrer le montant");
-            double montant = sc.nextDouble();
+            double montant = readDouble();
             sc.nextLine();
 
             boolean res = c1.retirer(montant);
 
-            if (res){
-                System.out.println("votre solde aprés la opération est "+c1.getSold());
+            if (res) {
+                System.out.println("votre solde aprés la opération est " + c1.getSold());
 
-                Retrait operationR = new Retrait(montant , result);
+                Retrait operationR = new Retrait(montant, result);
                 c1.addOperation(operationR);
 
-            }else{
+            } else {
 
-                System.out.println("you dont have enough solde , votre solde : " +c1.getSold());
+                System.out.println("you dont have enough solde , votre solde : " + c1.getSold());
 
             }
 
 
-
-
-        }else{
+        } else {
 
             System.out.println("there is no account with this numero");
 
         }
 
 
-
-
     }
 
 
-    public void virement(){
+    public void virement() {
 
-        Compte c1 ;
+        Compte c1;
 
 
         System.out.println("enter votre numero the compte");
 
-        String numero= sc.nextLine().trim();
+        String numero = sc.nextLine().trim();
 
-        if (liste.containsKey(numero)){
-            c1=liste.get(numero);
+        if (liste.containsKey(numero)) {
+            c1 = liste.get(numero);
 
             Sources result = checkSource();
 
             System.out.println("entrer le montant");
-            double montant = sc.nextDouble();
+            double montant = readDouble();
             sc.nextLine();
 
             boolean res = c1.addAmount(montant);
 
-            Versement v = new Versement(montant , result);
+            Versement v = new Versement(montant, result);
             c1.addOperation(v);
 
 
-                System.out.println("votre solde aprés la opération est "+c1.getSold());
+            System.out.println("votre solde aprés la opération est " + c1.getSold());
 
 
-
-
-
-        }else{
+        } else {
 
             System.out.println("there is no account with this numero");
 
         }
 
 
-
     }
 
 
+    public void soldeDeCompte() {
 
-    public void soldeDeCompte(){
-
-        Compte c1 ;
+        Compte c1;
 
 
         System.out.println("enter votre numero the compte");
 
-        String numero= sc.nextLine().trim();
+        String numero = sc.nextLine().trim();
 
         if (liste.containsKey(numero)) {
 
             c1 = liste.get(numero);
             System.out.println(c1.getSold());
 
-        }else{
+        } else {
 
             System.out.println("there is no account with this numero");
 
         }
 
 
-
     }
 
 
-
-
-    public void listeDesOperations(){
-        Compte c1 ;
+    public void listeDesOperations() {
+        Compte c1;
 
 
         System.out.println("enter votre numero the compte");
 
-        String numero= sc.nextLine().trim();
+        String numero = sc.nextLine().trim();
 
         if (liste.containsKey(numero)) {
 
             c1 = liste.get(numero);
-
-            for (Operation o : c1.getOpList()){
+            for (Operation o : c1.getOpList()) {
 
                 System.out.println(o.toString());
 
             }
 
-        }else{
+        } else {
 
             System.out.println("there is no account with this numero");
 
         }
 
     }
-
 
 
     public void verment() {
@@ -252,11 +231,8 @@ public class AllFunctions {
                 c2 = liste.get(numero2);
 
 
-
-
-
                 System.out.println("entrer le montant");
-                double montant = sc.nextDouble();
+                double montant = readDouble();
                 sc.nextLine();
 
                 boolean res = c1.retirer(montant);
@@ -268,12 +244,9 @@ public class AllFunctions {
                     c1.addOperation(operationR);
 
 
+                    Boolean resDeVirment = c2.addAmount(montant);
 
-
-
-                     Boolean resDeVirment = c2.addAmount(montant);
-
-                    Versement v = new Versement(montant , Sources.VIREMENT_EXTERNE);
+                    Versement v = new Versement(montant, Sources.VIREMENT_EXTERNE);
                     c1.addOperation(v);
 
                 } else {
@@ -281,9 +254,6 @@ public class AllFunctions {
                     System.out.println("you dont have enough solde , votre solde : " + c1.getSold());
 
                 }
-
-
-
 
 
             } else {
@@ -298,46 +268,34 @@ public class AllFunctions {
     }
 
 
+    public Destinations checkDes() {
+
+        boolean checkIfExist = false;
+        Destinations destination = null;
+
+        do {
+            System.out.println("Enter the source of the money");
+
+            System.out.println("Choisissez la destination :");
+            System.out.println("1 - CHEQUE");
+            System.out.println("2 - DISTRIBUTEUR_ATM");
+            System.out.println("3 - VIREMENT_SORTANT");
+
+            int choice = readInt();
+            destination = Destinations.fromChoice(choice);
+
+            if (destination != null) {
+                checkIfExist = true;
+            } else {
+                System.out.println("Choix invalide, réessayez.");
+            }
+
+        } while (!checkIfExist);
+
+        return destination;
 
 
-
-
-
-
-
-
-
-
-  public Destinations checkDes(){
-
-      boolean checkIfExist = false;
-      Destinations destination = null;
-
-      do {
-          System.out.println("Enter the source of the money");
-
-          System.out.println("Choisissez la destination :");
-          System.out.println("1 - CHEQUE");
-          System.out.println("2 - DISTRIBUTEUR_ATM");
-          System.out.println("3 - VIREMENT_SORTANT");
-
-          int choice = sc.nextInt();
-          destination = Destinations.fromChoice(choice);
-
-          if (destination != null) {
-              checkIfExist = true; // valid choice → exit loop
-          } else {
-              System.out.println("Choix invalide, réessayez.");
-          }
-
-      } while (!checkIfExist);
-
-      return destination;
-
-
-
-  }
-
+    }
 
 
     public Sources checkSource() {
@@ -351,7 +309,7 @@ public class AllFunctions {
             System.out.println("2 - DEPOT_ESPECES");
             System.out.println("3 - SALAIRE");
 
-            int choice = sc.nextInt();
+            int choice = readInt();
             source = Sources.fromChoice(choice);
 
             if (source == null) {
@@ -364,18 +322,14 @@ public class AllFunctions {
     }
 
 
-
-
-
-
-    public void display(){
-        for(Compte c :liste.values()){
+    public void display() {
+        for (Compte c : liste.values()) {
 
             System.out.println(c.afficherDetails());
 
         }
 
-        for(String c :liste.keySet()){
+        for (String c : liste.keySet()) {
 
             System.out.println(c);
 
@@ -383,33 +337,47 @@ public class AllFunctions {
     }
 
 
-    public void addIntrest(){
+    public void addIntrest() {
 
 
-        for(Compte c :  liste.values()){
-
+        for (Compte c : liste.values()) {
 
 
             c.calculerInteret();
 
 
-
-
         }
 
 
-
-
     }
-//
-//    public void addIntrest() {
-//        for (Compte c : liste.values()) {
-//            System.out.println("Before: " + c.getSold());
-//            c.calculerInteret();
-//            System.out.println("After: " + c.getSold());
-//            System.out.println("///////////////////////////////");
-//        }
-//    }
+
+    private double readDouble() {
+        while (true) {
+            try {
+                double value = sc.nextDouble();
+
+                return value;
+            } catch (InputMismatchException e) {
+                System.out.println(" Erreur : Entrez un nombre valide (double).");
+                sc.nextLine();
+            }
+        }
+    }
+
+
+    private int readInt() {
+        while (true) {
+            try {
+
+                int value = sc.nextInt();
+                sc.nextLine();
+                return value;
+            } catch (InputMismatchException e) {
+                System.out.println(" Erreur : Entrez un nombre entier valide.");
+                sc.nextLine();
+            }
+        }
+    }
 
 
 }
