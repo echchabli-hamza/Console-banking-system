@@ -27,21 +27,25 @@ Ce projet est une application console en Java 8 permettant de gérer les comptes
 - Consulter la liste des opérations effectuées sur un compte
 
 ## project Structure
-└── src
-    ├── controllers
-    │   ├── AllFunctions.java
-    │   └── Menu.java
-    ├── Main.java
-    └── models
-        ├── Compte.java
-        ├── comptes
-        │   ├── CompteCourant.java
-        │   └── CompteEpargne.java
-        ├── Operation.java
-        └── operations
-            ├── Retrait.java
-            ├── variables
-            │   ├── Destinations.java
-            │   └── Sources.java
-            └── Versement.java
+└── src \
+          ├── controllers \
+           │    ├── AllFunctions.java\
+           |       └── Menu.java\
+           ├── Main.java\
+           └── models\
+               ├── Compte.java\
+               ├── comptes\
+               │   ├── CompteCourant.java\
+               │   └── CompteEpargne.java\
+               ├── Operation.java\
+               └── operations\
+                          ├── Retrait.java\
+                          ├── variables\
+                          │   ├── Destinations.java\
+                          │   └── Sources.java\
+                          └── Versement.java\
 
+
+## ScreenShot
+
+   ![](iamges/1.png)
