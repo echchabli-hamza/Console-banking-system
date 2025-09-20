@@ -22,12 +22,15 @@ public class Menu {
 
 
         System.out.println(
-          "1 : Créer un compte \n"+
-          "2 : Effectuer un retrait dans un compte \n"+
-          "3 : Effectuer un verment d'un compte \n"+
-          "4 : Effectuer un virement entre comptes \n"+
-          "5 : Consulter le solde du compte \n"+
-          "6 : Consulter la liste des opérations "
+                "\n=== Menu Principal ===\n" +
+                        "1 : Créer un compte\n" +
+                        "2 : Effectuer un retrait dans un compte\n" +
+                        "3 : Effectuer un virement (ajout d’argent)\n" +
+                        "4 : Afficher tous les comptes\n" +
+                        "5 : Consulter le solde d’un compte\n" +
+                        "6 : Consulter la liste des opérations\n" +
+                        "7 : Effectuer un virement entre deux comptes\n" +
+                        "0 : Quitter"
         );
 
         System.out.println("enter your choice");
@@ -65,9 +68,12 @@ public class Menu {
                 break ;
             case 7 : a.verment();
             break ;
-            case 8 : a.addIntrest();
-            break;
+            case 0: System.out.println("✅ Fin du programme.");
+                System.exit(0);
 
+            break;
+            default:
+                System.out.println("❌ Choix invalide ! Veuillez entrer un nombre entre 1 et 7.");
 
         }
         this.index();
