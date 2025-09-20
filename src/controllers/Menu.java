@@ -4,8 +4,17 @@ import java.util.Scanner ;
 
 public class Menu {
 
+    private AllFunctions a ;
 
-    private AllFunctions a = new AllFunctions();
+
+    public Menu( AllFunctions arg ){
+
+        this.a = arg ;
+
+    }
+
+
+
 
 
 
@@ -56,6 +65,9 @@ public class Menu {
                 break ;
             case 7 : a.verment();
             break ;
+            case 8 : a.addIntrest();
+            break;
+
 
         }
         this.index();

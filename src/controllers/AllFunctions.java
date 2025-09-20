@@ -383,34 +383,33 @@ public class AllFunctions {
     }
 
 
-//    public void addIntrest(){
-//
-//
-//        for(Compte c :  liste.values()){
-//
-//
-//            System.out.println(c.getSold());
-//            c.calculerInteret();
-//            System.out.println(c.getSold());
-//
-//            System.out.println("///////////////////////////////");
-//
-//
-//        }
-//
-//
-//
-//
-//    }
+    public void addIntrest(){
 
-    public void addIntrest() {
-        for (Compte c : liste.values()) {
-            System.out.println("Before: " + c.getSold());
+
+        for(Compte c :  liste.values()){
+
+
+
             c.calculerInteret();
-            System.out.println("After: " + c.getSold());
-            System.out.println("///////////////////////////////");
+
+
+
+
         }
+
+
+
+
     }
+//
+//    public void addIntrest() {
+//        for (Compte c : liste.values()) {
+//            System.out.println("Before: " + c.getSold());
+//            c.calculerInteret();
+//            System.out.println("After: " + c.getSold());
+//            System.out.println("///////////////////////////////");
+//        }
+//    }
 
 
 }

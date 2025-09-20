@@ -8,10 +8,30 @@ import models.Operation;
 public class Main {
     public static void main(String[] args) {
 
+        AllFunctions al = new AllFunctions();
+
+        new Thread(() -> {
+            System.out.println("EEEEE");
+            while (true) {
+                try {
+                    al.addIntrest();
+                } catch (Exception ex) {
+                    ex.printStackTrace(); // show error instead of killing the thread
+                }
+
+                try {
+                    Thread.sleep(3000); // 3 seconds
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+            }
+        }).start();
 
 
 
-        Menu m1 = new Menu();
+
+        Menu m1 = new Menu(al);
 
         m1.index();
 

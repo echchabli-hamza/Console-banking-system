@@ -33,7 +33,7 @@ public class CompteCourant extends Compte {
     @Override
     public boolean retirer(double amount) {
 
-        if (amount  > this.getSold() +decouvert ) {
+        if (amount  > this.getSold() +decouvert || this.getSold()<=0 ) {
             return false;
         } else {
             setSold(getSold() - amount);
@@ -53,6 +53,8 @@ public class CompteCourant extends Compte {
 
     @Override
      public void calculerInteret(){
+
+
 
      };
 
