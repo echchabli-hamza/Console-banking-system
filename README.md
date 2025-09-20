@@ -26,7 +26,22 @@ Ce projet est une application console en Java 8 permettant de gérer les comptes
 - Consulter le solde d'un compte
 - Consulter la liste des opérations effectuées sur un compte
 
-## Exécution
-1. Compiler le projet :
-   ```bash
-   javac -d out $(find . -name "*.java")
+## project Structure
+└── src
+    ├── controllers
+    │   ├── AllFunctions.java
+    │   └── Menu.java
+    ├── Main.java
+    └── models
+        ├── Compte.java
+        ├── comptes
+        │   ├── CompteCourant.java
+        │   └── CompteEpargne.java
+        ├── Operation.java
+        └── operations
+            ├── Retrait.java
+            ├── variables
+            │   ├── Destinations.java
+            │   └── Sources.java
+            └── Versement.java
+
