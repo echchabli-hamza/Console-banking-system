@@ -1,5 +1,11 @@
 # Gestion des Comptes Bancaires - Application Java Console
 
+# Planification 
+  https://echchablihamza1-1758101303053.atlassian.net/jira/software/projects/GCB/boards/2/backlog?selectedIssue=GCB-7
+  
+# Diagram DE class
+  https://lucid.app/lucidchart/e93244c1-696c-463f-ad84-a206b2813ebd/edit?page=0_0&invitationId=inv_60abb0e4-c01e-4818-b7d2-91f75e704ec6#
+
 ## Description du projet
 Ce projet est une application console en Java 8 permettant de gérer les comptes bancaires et les opérations associées. L'application permet de créer des comptes, effectuer des retraits, des versements, des virements, et de consulter le solde ou les opérations d'un compte. Les données sont conservées en mémoire pendant l'exécution de l'application.
 
